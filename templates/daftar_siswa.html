@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Daftar Siswa{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">👥 Daftar Siswa Terdaftar</h2>
+
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>No</th>
+            <th>Nama Lengkap</th>
+            <th>Tanggal Lahir</th>
+            <th>Jenis Kelamin</th>
+            <th>Orang Tua</th>
+            <th>Telepon</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if students %}
+            {% for student in students %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ student.full_name }}</td>
+                <td>{{ student.birth_date }}</td>
+                <td>{{ 'Laki-laki' if student.gender == 'M' else 'Perempuan' }}</td>
+                <td>{{ student.parent_name }}</td>
+                <td>{{ student.parent_phone }}</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="6" class="text-center">Belum ada data siswa</td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+{% endblock %}

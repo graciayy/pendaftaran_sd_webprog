@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">📊 Dashboard Admin</h2>
+
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card text-white bg-warning">
+            <div class="card-body">
+                <h5 class="card-title">Pending</h5>
+                <h2>{{ pending }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-success">
+            <div class="card-body">
+                <h5 class="card-title">Diterima</h5>
+                <h2>{{ accepted }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-danger">
+            <div class="card-body">
+                <h5 class="card-title">Ditolak</h5>
+                <h2>{{ rejected }}</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h4 class="mb-3">Daftar Pendaftaran</h4>
+<table class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nama Siswa</th>
+            <th>Orang Tua</th>
+            <th>Tanggal Daftar</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if registrations %}
+            {% for reg in registrations %}
+            <tr>
+                <td>{{ reg.registration_id }}</td>
+                <td>{{ reg.full_name }}</td>
+                <td>{{ reg.parent_name }}</td>
+                <td>{{ reg.registration_date }}</td>
+                <td>
+                    {% if reg.status == 'pending' %}
+                        <span class="badge bg-warning">Pending</span>
+                    {% elif reg.status == 'accepted' %}
+                        <span class="badge bg-success">Diterima</span>
+                    {% else %}
+                        <span class="badge bg-danger">Ditolak</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="5" class="text-center">Belum ada pendaftaran</td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+{% endblock %}

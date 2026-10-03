@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Form Pendaftaran{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h2 class="mb-4">📝 Form Pendaftaran Siswa Baru</h2>
+        
+        <form method="POST" enctype="multipart/form-data">
+            <h4 class="mt-4 mb-3">Data Siswa</h4>
+            
+            <div class="mb-3">
+                <label for="full_name" class="form-label">Nama Lengkap *</label>
+                <input type="text" class="form-control" id="full_name" name="full_name" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="birth_date" class="form-label">Tanggal Lahir *</label>
+                <input type="date" class="form-control" id="birth_date" name="birth_date" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="gender" class="form-label">Jenis Kelamin *</label>
+                <select class="form-select" id="gender" name="gender" required>
+                    <option value="">-- Pilih --</option>
+                    <option value="M">Laki-laki</option>
+                    <option value="F">Perempuan</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="photo" class="form-label">Foto (Opsional)</label>
+                <input type="file" class="form-control" id="photo" name="photo" accept="image/*">
+                <small class="form-text text-muted">Format: JPG, PNG. Max 2MB</small>
+            </div>
+
+            <h4 class="mt-4 mb-3">Data Orang Tua</h4>
+
+            <div class="mb-3">
+                <label for="parent_name" class="form-label">Nama Orang Tua/Wali *</label>
+                <input type="text" class="form-control" id="parent_name" name="parent_name" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="parent_phone" class="form-label">Nomor Telepon *</label>
+                <input type="tel" class="form-control" id="parent_phone" name="parent_phone" 
+                       placeholder="08123456789" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="parent_address" class="form-label">Alamat Lengkap *</label>
+                <textarea class="form-control" id="parent_address" name="parent_address" rows="3" required></textarea>
+            </div>
+
+            <div class="d-grid gap-2 mt-4">
+                <button type="submit" class="btn btn-primary btn-lg">Daftar</button>
+                <a href="/" class="btn btn-secondary">Batal</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
